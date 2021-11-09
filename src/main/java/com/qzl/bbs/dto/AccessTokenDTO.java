@@ -1,15 +1,28 @@
 package com.qzl.bbs.dto;
 
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
+@Component
+@Data
 public class AccessTokenDTO {
-    private final String client_id = "1f922d65c45f2b65e23e";
-    private final String client_secret = "a6193efaa2c0c434b218315477574f0a78b511cc";
+    private String client_id;
+    private String client_secret;
     private String code;
     private String redirect_uri;
     private String state;
 
+    @Value("${github.client.id}")
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
+    }
+
+    @Value("${github.client.secret}")
+    public void setClient_secret(String client_secret) {
+        this.client_secret = client_secret;
+    }
 }
